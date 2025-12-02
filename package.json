@@ -1,55 +1,71 @@
 {
-  "name": "n8n-nodes-<...>",
-  "version": "0.1.0",
-  "description": "",
-  "keywords": [
-    "n8n-community-node-package"
-  ],
-  "license": "MIT",
-  "homepage": "",
-  "author": {
-    "name": "",
-    "email": ""
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
-  },
-  "engines": {
-    "node": ">=20.15"
-  },
-  "main": "index.js",
-  "scripts": {
-    "build": "npx rimraf dist && tsc && gulp build:icons",
-    "dev": "tsc --watch",
-    "format": "prettier nodes credentials --write",
-    "lint": "eslint nodes credentials package.json",
-    "lintfix": "eslint nodes credentials package.json --fix",
-    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
-  },
-  "files": [
-    "dist"
-  ],
-  "n8n": {
-    "n8nNodesApiVersion": 1,
-    "credentials": [
-      "dist/credentials/ExampleCredentialsApi.credentials.js",
-      "dist/credentials/HttpBinApi.credentials.js"
-    ],
-    "nodes": [
-      "dist/nodes/ExampleNode/ExampleNode.node.js",
-      "dist/nodes/HttpBin/HttpBin.node.js"
-    ]
-  },
-  "devDependencies": {
-    "@typescript-eslint/parser": "~8.32.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-n8n-nodes-base": "^1.16.3",
-    "gulp": "^5.0.0",
-    "prettier": "^3.5.3",
-    "typescript": "^5.8.2"
-  },
-  "peerDependencies": {
-    "n8n-workflow": "*"
-  }
+	"name": "n8n-nodes-peak-on-n8n-test",
+	"version": "0.1.0",
+	"description": "Custom n8n node for creating receipts via PEAK API",
+	"private": false,
+	"keywords": [
+		"n8n-community-node-package"
+	],
+	"license": "MIT",
+	"homepage": "https://github.com/jamettw/n8n-nodes-peak-on-n8n",
+	"author": {
+		"name": "jamettw",
+		"email": "thitiwut.to@peakengine.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jamettw/n8n-nodes-peak-on-n8n.git"
+	},
+	"engines": {
+		"node": ">=20.17"
+	},
+	"main": "index.js",
+	"scripts": {
+		"dev": "tsc --watch",
+		"format": "prettier nodes credentials --write",
+		"lint": "eslint nodes credentials package.json",
+		"lintfix": "eslint nodes credentials package.json --fix",
+		"prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json",
+		"clean": "rimraf node_modules package-lock.json dist",
+		"n8n:dev": "n8n start",
+		"build": "rimraf dist && tsc && gulp build:icons"
+	},
+	"files": [
+		"dist"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"credentials": [
+			"dist/credentials/PEAKApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/Invoice/CreateInvoice.node.js",
+			"dist/nodes/Invoice/CreateExpense.node.js",
+			"dist/nodes/Receipt/CreateReceipt.node.js",
+			"dist/nodes/Contact/GetContact.node.js",
+			"dist/nodes/Product/GetProduct.node.js",
+			"dist/nodes/Product/GetService.node.js",
+			"dist/nodes/DailyJournal/GetAccountCode.node.js",
+			"dist/nodes/DailyJournal/CreateDailyJournal.node.js",
+			"dist/nodes/PaymentMethod/GetPaymentMethod.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "^0.9.0",
+		"@types/node": "^20.11.30",
+		"@typescript-eslint/eslint-plugin": "^8.47.0",
+		"@typescript-eslint/parser": "^8.47.0",
+		"eslint": "^9.39.1",
+		"eslint-plugin-n8n-nodes-base": "^1.16.3",
+		"gulp": "^5.0.0",
+		"prettier": "^3.5.3",
+		"rimraf": "^6.0.1",
+		"typescript": "^5.8.2"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	},
+	"overrides": {
+		"change-case": "4.1.2"
+	}
 }

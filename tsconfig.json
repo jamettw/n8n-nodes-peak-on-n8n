@@ -25,6 +25,7 @@
 		"credentials/**/*",
 		"nodes/**/*",
 		"nodes/**/*.json",
+		"helpers/**/*.ts",
 		"package.json",
 	],
 }
