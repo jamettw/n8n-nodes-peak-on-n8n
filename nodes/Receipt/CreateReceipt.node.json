@@ -1,0 +1,13 @@
+{
+  "nodeClassDescription": {
+    "displayName": "Create Receipt",
+    "name": "createReceipt",
+    "icon": "file:../../assets/PEAK.svg",
+    "codex": {
+      "categories": ["PEAK"],
+      "subcategories": {
+        "PEAK": ["Document Actions"]
+      }
+    }
+  }
+}

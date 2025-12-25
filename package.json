@@ -1,7 +1,7 @@
 {
-	"name": "n8n-nodes-peak-on-n8n-test",
+	"name": "n8n-nodes-peak-test",
 	"version": "0.1.0",
-	"description": "Custom n8n node for creating receipts via PEAK API",
+	"description": "testing",
 	"private": false,
 	"keywords": [
 		"n8n-community-node-package"
@@ -9,8 +9,8 @@
 	"license": "MIT",
 	"homepage": "https://github.com/jamettw/n8n-nodes-peak-on-n8n",
 	"author": {
-		"name": "jamettw",
-		"email": "thitiwut.to@peakengine.com"
+		"name": "iJame",
+		"email": "l3luehunter@gmail.com"
 	},
 	"repository": {
 		"type": "git",
@@ -25,13 +25,13 @@
 		"format": "prettier nodes credentials --write",
 		"lint": "eslint nodes credentials package.json",
 		"lintfix": "eslint nodes credentials package.json --fix",
-		"prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json",
 		"clean": "rimraf node_modules package-lock.json dist",
 		"n8n:dev": "n8n start",
 		"build": "rimraf dist && tsc && gulp build:icons"
 	},
 	"files": [
-		"dist"
+		"dist",
+		"!dist/package.json"
 	],
 	"n8n": {
 		"n8nNodesApiVersion": 1,
@@ -39,6 +39,7 @@
 			"dist/credentials/PEAKApi.credentials.js"
 		],
 		"nodes": [
+			"dist/nodes/ClientToken/CreateClientToken.node.js",
 			"dist/nodes/Invoice/CreateInvoice.node.js",
 			"dist/nodes/Invoice/CreateExpense.node.js",
 			"dist/nodes/Receipt/CreateReceipt.node.js",
@@ -67,5 +68,8 @@
 	},
 	"overrides": {
 		"change-case": "4.1.2"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }
