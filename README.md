@@ -1,48 +1,127 @@
-![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
+# 🧩 n8n-nodes-peak  
+Official n8n community node for integrating with **PEAK Accounting Platform**.
 
-# n8n-nodes-starter
+PEAK is a cloud-based accounting and financial automation platform that helps businesses automate receipts, expenses, invoices, order synchronization, and workflow integrations with marketplaces.  
 
-This repo contains example nodes to help you get started building your own custom integrations for [n8n](https://n8n.io). It includes the node linter and other dependencies.
+With this node, you can build automated workflows that interact directly with your PEAK business.
 
-To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
+---
+## 🚀 Features  
+This node allows you to perform a variety of accounting operations, including:
 
-If you would like your node to be available on n8n cloud you can also [submit your node for verification](https://docs.n8n.io/integrations/creating-nodes/deploy/submit-community-nodes/).
+- **Create Daily Journal** – Create daily journal documents via API  
+- **Create Receipt** – Create receipt documents via API  
+- **Create Invoice** – Create invoice documents via API  
+- **Create Expense** – Create expense documents via API  
+- **Get Master Data** – Retrieve contacts, products, payment methods, and other essential master data  
 
-## Prerequisites
+Additional operations may be added in future releases.
 
-You need the following installed on your development machine:
+---
 
-* [git](https://git-scm.com/downloads)
-* Node.js and npm. Minimum version Node 20. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
-* Install n8n with:
-  ```
-  npm install n8n -g
-  ```
-* Recommended: follow n8n's guide to [set up your development environment](https://docs.n8n.io/integrations/creating-nodes/build/node-development-environment/).
+## 📦 Installation  
+Follow the installation guide in the [**n8n Community Nodes documentation**](https://docs.n8n.io/integrations/community-nodes/installation/)
 
-## Using this starter
+Once installed, you'll be able to use all PEAK-related operations.
 
-These are the basic steps for working with the starter. For detailed guidance on creating and publishing nodes, refer to the [documentation](https://docs.n8n.io/integrations/creating-nodes/).
+---
 
-1. [Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from this template repository.
-2. Clone your new repo:
-   ```
-   git clone https://github.com/<your organization>/<your-repo-name>.git
-   ```
-3. Run `npm i` to install dependencies.
-4. Open the project in your editor.
-5. Browse the examples in `/nodes` and `/credentials`. Modify the examples, or replace them with your own nodes.
-6. Update the `package.json` to match your details.
-7. Run `npm run lint` to check for errors or `npm run lintfix` to automatically fix errors when possible.
-8. Test your node locally. Refer to [Run your node locally](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/) for guidance.
-9. Replace this README with documentation for your node. Use the [README_TEMPLATE](README_TEMPLATE.md) to get started.
-10. Update the LICENSE file to use your details.
-11. [Publish](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) your package to npm.
+## 🔐 Credentials (Required Before Use)
 
-## More information
+To use this node, you must obtain **PEAK API Credentials**.  
+These credentials are issued **only** by the PEAK Sales / Partner team.
 
-Refer to our [documentation on creating nodes](https://docs.n8n.io/integrations/creating-nodes/) for detailed information on building your own nodes.
+### Your credential will consist of four fields:
 
-## License
+| Field | Description |
+|-------|-------------|
+| **Connect ID** | Used only for requesting a Client Token and identifying your integration |
+| **Connect Key** | Secret used together with Connect ID when requesting a Client Token |
+| **Application Code** | Code required for generate User Token |
+| **User Token** | Access token linked to a specific user & merchant |
 
-[MIT](https://github.com/n8n-io/n8n-nodes-starter/blob/master/LICENSE.md)
+---
+
+## 🧭 How to Obtain PEAK API Credentials
+
+### 1️⃣ Contact PEAK Sales Team  
+Request API integration access.  
+You will receive:
+- Connect ID  
+- Connect Key  
+- Application Code  
+
+### 2️⃣ Generate the User Token inside PEAK  
+1. Log in to the PEAK web app  
+2. Open the merchant you want to connect  
+3. Navigate to **Connect Apps Setting -> Connect Partner App -> Connect Non-Partner App** in Setting  
+4. Enter your **Application Code**  
+5. PEAK will generate a **User Token**  
+
+Once you have all four values, create a new credential in n8n:
+
+**Settings → Credentials → New → PEAK API**
+
+After saving, all PEAK nodes will be ready to use.
+
+---
+
+## ⚙️ Authentication  
+Every PEAK request requires:
+
+- `Time-Stamp`  
+- `Time-Signature`
+- `User-Token`  
+- `Client-Token`
+
+The PEAK n8n node **automatically handles all signature generation**, timestamps, and headers — no manual work required.
+
+---
+
+## 🛠 Operations  
+### **PEAK Node**
+Available actions:
+
+| Resource | Operation | Description |
+|----------|-----------|-------------|
+| Daily Journal | Create | Create a daily Journal document |
+| Receipt | Create | Create a receipt document |
+| Invoice | Create | Create a invoice document |
+| Expense | Create | Create an expense document |
+
+More resources will be added in future versions.
+
+---
+
+## 📘 Usage
+
+### **Action Node (PEAK)**
+1. Drag the **PEAK** node into your workflow  
+2. Select the resource (e.g., Receipt, Expense)  
+3. Choose an operation  
+4. Fill in required fields  
+5. Run the workflow
+
+### Example Use Cases  
+- **Shopee Webhook → PEAK Create Receipt**  
+- **Google Sheets → PEAK Create Expense**  
+- **Internal System → Automated Accounting Workflows**  
+- **Marketplace Sync → PEAK Billing or Receipt Generation**
+---
+
+## 🔗 Resources  
+- [n8n Community Nodes Documentation](https://docs.n8n.io/integrations/community-nodes/)
+- [PEAK API Documentation](https://developers.peakaccount.com/reference/peak-open-api)  
+- [n8n Official Docs](https://docs.n8n.io/)
+
+---
+
+## 🧩 Version History
+
+### **0.1.0**  
+- Initial release  
+- Added:
+  - Create Receipt  
+  - Create Expense  
+  - Fetch Master Data
+---
