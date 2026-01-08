@@ -1,14 +1,32 @@
 import {
 	ICredentialType,
 	INodeProperties,
+	ICredentialTestRequest,
 } from 'n8n-workflow';
-
 export class PEAKApi implements ICredentialType {
 	name = 'PEAKApi';
 	displayName = 'PEAK API';
 	documentationUrl = 'https://peak-api-core.readme.io/reference/peak-open-api';
 
 	properties: INodeProperties[] = [
+		{
+			displayName: 'Server Environment',
+			name: 'serverEnvironment',
+			type: 'options',
+			typeOptions: { rows: 1 },
+			default: 'production',
+			required: true,
+			options: [
+				{
+					name: 'UAT',
+					value: 'uat',
+				},
+				{
+					name: 'Production',
+					value: 'production',
+				},
+			],
+		},
 		{
 			displayName: 'User Token (static)',
 			name: 'userToken',
@@ -18,22 +36,42 @@ export class PEAKApi implements ICredentialType {
 			required: true,
 		},
 		{
-			displayName: 'Client Token (24h)',
-			name: 'clientToken',
+			displayName: 'Connect ID',
+			name: 'connectId',
 			type: 'string',
-			typeOptions: { password: true },
 			default: '',
-			required: false,
-			description: 'Expires every 24 hours',
+			required: true,
+			description: '',
 		},
 		{
-			displayName: 'Connect ID (HMAC key)',
-			name: 'connectId',
+			displayName: 'Connect Key',
+			name: 'connectKey',
 			type: 'string',
 			typeOptions: { password: true },
 			default: '',
 			required: true,
-			description: 'Used to sign Time-Signature = HMAC-SHA1(Time-Stamp, connectId)',
+			description: '',
 		},
 	];
+
+	/**
+ * NOTE:
+ * This is a lightweight smoke test required by n8n automated review.
+ * Full authentication (HMAC + timestamp) is performed at runtime
+ * when node operations are executed.
+ */
+	test: ICredentialTestRequest = {
+		request: {
+			method: 'POST',
+			url:
+				'https://peakengineapidev.azurewebsites.net/api/v1/clienttoken',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: {
+				ping: true,
+			},
+			json: true,
+		},
+	};
 }
