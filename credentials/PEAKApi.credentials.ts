@@ -28,7 +28,7 @@ export class PEAKApi implements ICredentialType {
 			],
 		},
 		{
-			displayName: 'User Token (static)',
+			displayName: 'User Token',
 			name: 'userToken',
 			type: 'string',
 			typeOptions: { password: true },
